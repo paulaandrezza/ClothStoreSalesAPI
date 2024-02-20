@@ -12,6 +12,11 @@ namespace Data.Repository
             _sales.Add(sale);
         }
 
+        public void Delete(Sale sale)
+        {
+            _sales.Remove(sale);
+        }
+
         public IEnumerable<Sale> GetAll()
         {
             return _sales;
