@@ -1,0 +1,20 @@
+﻿namespace Data.Models
+{
+    internal class SaleItem
+    {
+        public SaleItem(int productId, string productName, int quantity, decimal unitPrice)
+        {
+            ProductId = productId;
+            ProductName = productName;
+            Quantity = quantity;
+            UnitPrice = unitPrice;
+        }
+
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string Size { get; set; }
+        public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+        public decimal Subtotal => Quantity * UnitPrice;
+    }
+}

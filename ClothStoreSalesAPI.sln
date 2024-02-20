@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothStoreSalesAPI", "ClothStoreSalesAPI\ClothStoreSalesAPI.csproj", "{68A3FE03-0FF0-41A7-A75C-7C5ADFEAAEF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{1975C4A2-2BA1-46B8-BDE0-8DC64DA8B7B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68A3FE03-0FF0-41A7-A75C-7C5ADFEAAEF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68A3FE03-0FF0-41A7-A75C-7C5ADFEAAEF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68A3FE03-0FF0-41A7-A75C-7C5ADFEAAEF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68A3FE03-0FF0-41A7-A75C-7C5ADFEAAEF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1975C4A2-2BA1-46B8-BDE0-8DC64DA8B7B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1975C4A2-2BA1-46B8-BDE0-8DC64DA8B7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1975C4A2-2BA1-46B8-BDE0-8DC64DA8B7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1975C4A2-2BA1-46B8-BDE0-8DC64DA8B7B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {025FB06D-771C-47FC-8DD6-A4FF594AC8F4}
+	EndGlobalSection
+EndGlobal
