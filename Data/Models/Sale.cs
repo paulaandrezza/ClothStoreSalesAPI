@@ -2,7 +2,7 @@
 {
     internal class Sale
     {
-        private static int _id = 1;
+        public static int _id = 1;
 
         public Sale(DateTime saleDate, string customerName, decimal totalAmount, SaleItem[] items)
         {

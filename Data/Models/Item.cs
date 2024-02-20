@@ -2,7 +2,7 @@
 
 namespace Data.Models
 {
-    internal class Item
+    public class Item
     {
         private static int _id = 1;
 

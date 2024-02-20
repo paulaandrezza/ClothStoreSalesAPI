@@ -2,7 +2,7 @@
 
 namespace Data.Repository.Interface
 {
-    internal interface ISaleRepository
+    public interface ISaleRepository
     {
         void Add(Sale sale);
         void Update(Sale sale);

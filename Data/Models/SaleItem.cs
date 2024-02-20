@@ -1,6 +1,6 @@
 ﻿namespace Data.Models
 {
-    internal class SaleItem
+    public class SaleItem
     {
         public SaleItem(int productId, string productName, int quantity, decimal unitPrice)
         {

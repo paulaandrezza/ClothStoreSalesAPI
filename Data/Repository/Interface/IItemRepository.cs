@@ -3,7 +3,7 @@ using Data.Models.Enums;
 
 namespace Data.Repository.Interface
 {
-    internal interface IItemRepository
+    public interface IItemRepository
     {
         void Add(Item item);
         void Update(Item item);

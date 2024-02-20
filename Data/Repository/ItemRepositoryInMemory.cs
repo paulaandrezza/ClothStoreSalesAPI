@@ -4,7 +4,7 @@ using Data.Repository.Interface;
 
 namespace Data.Repository
 {
-    internal class ItemRepositoryInMemory : IItemRepository
+    public class ItemRepositoryInMemory : IItemRepository
     {
         private readonly List<Item> _items = new List<Item>();
 

@@ -3,7 +3,7 @@ using Data.Repository.Interface;
 
 namespace Data.Repository
 {
-    internal class SaleRepositoryInMemory : ISaleRepository
+    public class SaleRepositoryInMemory : ISaleRepository
     {
         private readonly List<Sale> _sales = new List<Sale>();
 
