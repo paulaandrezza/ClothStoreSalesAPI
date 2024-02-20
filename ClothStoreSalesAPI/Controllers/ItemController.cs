@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ClothStoreSalesAPI.RequestsModels;
+using Data.Models;
+using Data.Models.Enums;
+using Data.Repository.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ClothStoreSalesAPI.Controllers
 {
@@ -6,6 +10,66 @@ namespace ClothStoreSalesAPI.Controllers
     [Route("[controller]")]
     public class ItemController : ControllerBase
     {
-        private readonly ISaleRepository _saleRepository;
+        private readonly IItemRepository _itemRepository;
+
+        public ItemController(IItemRepository itemRepository)
+        {
+            _itemRepository = itemRepository;
+        }
+
+        [HttpPost(Name = "AddItem")]
+        public IActionResult AddItem([FromBody] CreateItemRequest itemRequest)
+        {
+            Item item = new Item(itemRequest.Name, itemRequest.Type, itemRequest.Sizes, itemRequest.Price);
+            _itemRepository.Add(item);
+            return Ok(new { Message = "Created successfully" });
+        }
+
+        [HttpDelete("{itemId}", Name = "DeleteItem")]
+        public IActionResult DeleteItem([FromRoute] int itemId)
+        {
+            Item item = _itemRepository.GetById(itemId);
+            if (item == null)
+                return NotFound($"The item with ID {itemId} was not found.");
+
+            _itemRepository.Delete(item);
+            return Ok("Item deleted sucesfully");
+        }
+
+        [HttpGet(Name = "GetAllItems")]
+        public IActionResult GetAllItems([FromQuery] string? size = null, ItemType? type = null)
+        {
+            if (size != null)
+                return Ok(_itemRepository.GetBySize(size));
+            else if (type != null)
+                return Ok(_itemRepository.GetByType((ItemType)type));
+            return Ok(_itemRepository.GetAll());
+        }
+
+        [HttpGet("{itemId}", Name = "GetItemById")]
+        public IActionResult GetItemById([FromRoute] int itemId)
+        {
+            Item item = _itemRepository.GetById(itemId);
+            if (item == null)
+                return NotFound($"The item with ID {itemId} was not found.");
+
+            return Ok(item);
+        }
+
+        [HttpPut("{itemId}", Name = "UpdateItem")]
+        public IActionResult UpdateItem([FromRoute] int itemId, CreateItemRequest itemRequest)
+        {
+            Item item = _itemRepository.GetById(itemId);
+            if (item == null)
+                return NotFound($"The item with ID {itemId} was not found.");
+
+            item.Name = itemRequest.Name;
+            item.Type = itemRequest.Type;
+            item.Sizes = itemRequest.Sizes;
+            item.Price = itemRequest.Price;
+
+            _itemRepository.Update(item);
+            return Ok(new { Message = "Item updated successfully." });
+        }
     }
 }

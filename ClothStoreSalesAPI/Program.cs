@@ -1,4 +1,11 @@
+using Data.Models;
+using Data.Repository;
+using Data.Repository.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<List<Item>>();
+builder.Services.AddSingleton<IItemRepository, ItemRepositoryInMemory>();
 
 // Add services to the container.
 

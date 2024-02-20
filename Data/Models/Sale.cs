@@ -1,6 +1,6 @@
 ﻿namespace Data.Models
 {
-    internal class Sale
+    public class Sale
     {
         public static int _id = 1;
 
