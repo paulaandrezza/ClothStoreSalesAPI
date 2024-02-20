@@ -10,8 +10,6 @@ namespace ClothStoreSalesAPI.RequestsModels
         [Required]
         public string CustomerName { get; set; }
         [Required]
-        public decimal TotalAmount { get; set; }
-        [Required]
         public SaleItem[] Items { get; set; }
     }
 }

@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<List<Item>>();
 builder.Services.AddSingleton<IItemRepository, ItemRepositoryInMemory>();
+builder.Services.AddSingleton<ISaleRepository, SaleRepositoryInMemory>();
 
 // Add services to the container.
 

@@ -12,11 +12,6 @@ namespace Data.Repository
             _sales.Add(sale);
         }
 
-        public void Delete(Sale sale)
-        {
-            _sales.Remove(sale);
-        }
-
         public IEnumerable<Sale> GetAll()
         {
             return _sales;
@@ -25,18 +20,6 @@ namespace Data.Repository
         public Sale GetById(int id)
         {
             return _sales.FirstOrDefault(s => s.Id == id);
-        }
-
-        public void Update(Sale sale)
-        {
-            var existingSale = GetById(sale.Id);
-            if (existingSale != null)
-            {
-                existingSale.CustomerName = sale.CustomerName;
-                existingSale.Items = sale.Items;
-                existingSale.TotalAmount = sale.TotalAmount;
-                existingSale.SaleDate = sale.SaleDate;
-            }
         }
     }
 }
