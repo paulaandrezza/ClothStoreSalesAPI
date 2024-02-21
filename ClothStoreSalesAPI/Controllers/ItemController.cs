@@ -2,6 +2,7 @@
 using Data.Models;
 using Data.Models.Enums;
 using Data.Repository.Interface;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClothStoreSalesAPI.Controllers
@@ -32,6 +33,7 @@ namespace ClothStoreSalesAPI.Controllers
             return Ok("Item deleted sucesfully");
         }
 
+        [EnableCors("localhost")]
         [HttpGet(Name = "GetAllItems")]
         public IActionResult GetAllItems([FromQuery] string? size = null, ItemType? type = null)
         {
