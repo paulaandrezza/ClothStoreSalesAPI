@@ -1,3 +1,4 @@
+using ClothStoreSalesAPI.Filters;
 using Data.Models;
 using Data.Repository;
 using Data.Repository.Interface;
@@ -9,6 +10,8 @@ builder.Services.AddSingleton<IItemRepository, ItemRepositoryInMemory>();
 builder.Services.AddSingleton<ISaleRepository, SaleRepositoryInMemory>();
 builder.Services.AddSingleton<IReturnRepository, ReturnRepositoryInMemory>();
 builder.Services.AddSingleton<IExchangeRepository, ExchangeRepositoryInMemory>();
+
+builder.Services.AddControllers(options => options.Filters.Add<ExceptionFilter>());
 
 // Add services to the container.
 
