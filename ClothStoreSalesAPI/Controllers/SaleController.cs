@@ -50,8 +50,6 @@ namespace ClothStoreSalesAPI.Controllers
         public IActionResult GetItemById([FromRoute] int saleId)
         {
             Sale sale = _saleRepository.GetById(saleId);
-            if (sale == null)
-                return NotFound($"The sale with ID {saleId} was not found.");
 
             return Ok(sale);
         }

@@ -22,8 +22,6 @@ namespace ClothStoreSalesAPI.Controllers
         public IActionResult AddReturn([FromRoute] int saleId, [FromBody] CreateReturnAndExchangeRequest returnRequest)
         {
             Sale sale = _saleRepository.GetById(saleId);
-            if (sale == null)
-                return NotFound($"The sale with ID {saleId} was not found.");
 
             Return returnSale = new Return(returnRequest.Date, sale);
 

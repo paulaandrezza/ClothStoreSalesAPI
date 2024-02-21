@@ -28,6 +28,8 @@ namespace ClothStoreSalesAPI.Filters
                 {
                     StatusCode = errorResult.StatusCode
                 };
+
+                _logger.LogWarning(context.Exception, "Exceção capturada pelo exception filter");
             }
             else
             {
@@ -40,9 +42,9 @@ namespace ClothStoreSalesAPI.Filters
                 {
                     StatusCode = errorResult.StatusCode
                 };
-            }
 
-            _logger.LogError(context.Exception, "Exceção capturada pelo exception filter");
+                _logger.LogError(context.Exception, "Exceção capturada pelo exception filter");
+            }
         }
     }
 }

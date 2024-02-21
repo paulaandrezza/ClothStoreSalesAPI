@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Data.CustomExceptions;
+using Data.Models;
 using Data.Repository.Interface;
 
 namespace Data.Repository
@@ -24,7 +25,11 @@ namespace Data.Repository
 
         public Sale GetById(int id)
         {
-            return _sales.FirstOrDefault(s => s.Id == id);
+            Sale sale = _sales.FirstOrDefault(s => s.Id == id);
+            if (sale == null)
+                throw new ClothStoreSalesApiException($"The sale with ID {id} was not found.", 404);
+
+            return sale;
         }
     }
 }
