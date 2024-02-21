@@ -28,11 +28,7 @@ namespace ClothStoreSalesAPI.Controllers
         [HttpDelete("{itemId}", Name = "DeleteItem")]
         public IActionResult DeleteItem([FromRoute] int itemId)
         {
-            Item item = _itemRepository.GetById(itemId);
-            if (item == null)
-                return NotFound($"The item with ID {itemId} was not found.");
-
-            _itemRepository.Delete(item);
+            _itemRepository.Delete(itemId);
             return Ok("Item deleted sucesfully");
         }
 
@@ -49,19 +45,13 @@ namespace ClothStoreSalesAPI.Controllers
         [HttpGet("{itemId}", Name = "GetItemById")]
         public IActionResult GetItemById([FromRoute] int itemId)
         {
-            Item item = _itemRepository.GetById(itemId);
-            if (item == null)
-                return NotFound($"The item with ID {itemId} was not found.");
-
-            return Ok(item);
+            return Ok(_itemRepository.GetById(itemId));
         }
 
         [HttpPut("{itemId}", Name = "UpdateItem")]
         public IActionResult UpdateItem([FromRoute] int itemId, CreateItemRequest itemRequest)
         {
             Item item = _itemRepository.GetById(itemId);
-            if (item == null)
-                return NotFound($"The item with ID {itemId} was not found.");
 
             item.Name = itemRequest.Name;
             item.Type = itemRequest.Type;

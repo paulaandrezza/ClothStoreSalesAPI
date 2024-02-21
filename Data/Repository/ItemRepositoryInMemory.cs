@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Data.CustomExceptions;
+using Data.Models;
 using Data.Models.Enums;
 using Data.Repository.Interface;
 
@@ -21,8 +22,9 @@ namespace Data.Repository
             _items.Add(item);
         }
 
-        public void Delete(Item item)
+        public void Delete(int id)
         {
+            Item item = GetById(id);
             _items.Remove(item);
         }
 
@@ -33,7 +35,10 @@ namespace Data.Repository
 
         public Item GetById(int id)
         {
-            return _items.FirstOrDefault(i => i.Id == id);
+            Item item = _items.FirstOrDefault(i => i.Id == id);
+            if (item == null)
+                throw new ClothStoreSalesApiException($"The item with ID {id} was not found.", 404);
+            return item;
         }
 
         public IEnumerable<Item> GetBySize(string size)

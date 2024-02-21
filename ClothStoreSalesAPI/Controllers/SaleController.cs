@@ -24,10 +24,7 @@ namespace ClothStoreSalesAPI.Controllers
             foreach (var saleItem in saleRequest.Items)
             {
                 var item = _itemRepository.GetById(saleItem.ProductId);
-                if (item == null)
-                {
-                    return BadRequest($"Item with ID {saleItem.ProductId} not found.");
-                }
+
                 if (!item.Sizes.Contains(saleItem.Size))
                 {
                     return BadRequest($"Size {saleItem.Size} is not available for item with ID {saleItem.ProductId}.");

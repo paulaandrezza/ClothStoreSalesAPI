@@ -7,7 +7,7 @@ namespace Data.Repository.Interface
     {
         void Add(Item item);
         void Update(Item item);
-        void Delete(Item item);
+        void Delete(int id);
         Item GetById(int id);
         IEnumerable<Item> GetAll();
         IEnumerable<Item> GetByType(ItemType type);
