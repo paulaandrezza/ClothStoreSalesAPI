@@ -8,6 +8,7 @@ builder.Services.AddSingleton<List<Item>>();
 builder.Services.AddSingleton<IItemRepository, ItemRepositoryInMemory>();
 builder.Services.AddSingleton<ISaleRepository, SaleRepositoryInMemory>();
 builder.Services.AddSingleton<IReturnRepository, ReturnRepositoryInMemory>();
+builder.Services.AddSingleton<IExchangeRepository, ExchangeRepositoryInMemory>();
 
 // Add services to the container.
 

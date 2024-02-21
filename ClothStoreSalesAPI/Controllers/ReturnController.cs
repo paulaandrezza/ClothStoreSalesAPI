@@ -18,14 +18,14 @@ namespace ClothStoreSalesAPI.Controllers
             _returnRepository = returnRepository;
         }
 
-        [HttpPost(Name = "AddReturn")]
-        public IActionResult AddReturn([FromBody] CreateReturnRequest returnRequest)
+        [HttpPost("{saleId}", Name = "AddReturn")]
+        public IActionResult AddReturn([FromRoute] int saleId, [FromBody] CreateReturnAndExchangeRequest returnRequest)
         {
-            Sale sale = _saleRepository.GetById(returnRequest.SaleId);
+            Sale sale = _saleRepository.GetById(saleId);
             if (sale == null)
-                return NotFound($"The sale with ID {returnRequest.SaleId} was not found.");
+                return NotFound($"The sale with ID {saleId} was not found.");
 
-            Return returnSale = new Return(returnRequest.ReturnDate, sale);
+            Return returnSale = new Return(returnRequest.Date, sale);
 
             _returnRepository.Add(returnSale);
             _saleRepository.Delete(sale);
