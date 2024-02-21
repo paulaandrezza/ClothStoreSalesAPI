@@ -25,14 +25,9 @@ namespace ClothStoreSalesAPI.Controllers
             if (sale == null)
                 return NotFound($"The sale with ID {saleId} was not found.");
 
-            DateTime finalExchangeDate = sale.SaleDate.AddDays(7);
-
-            if (exchangeRequest.Date > finalExchangeDate)
-                return BadRequest($"Exchanges are allowed only within 7 business days after the sale date.");
-
             Exchange exchangeSale = new Exchange(exchangeRequest.Date, sale);
 
-            _exchangeRepository.Add(exchangeSale);
+            _exchangeRepository.Add(sale, exchangeSale);
             _saleRepository.Delete(sale);
 
             return Ok(new { Message = "Exchange registered successfully." });

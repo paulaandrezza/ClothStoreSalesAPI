@@ -1,4 +1,5 @@
-﻿using Data.Models;
+﻿using Data.CustomExceptions;
+using Data.Models;
 using Data.Repository.Interface;
 
 namespace Data.Repository
@@ -7,8 +8,12 @@ namespace Data.Repository
     {
         private readonly List<Exchange> _exchange = new List<Exchange>();
 
-        public void Add(Exchange exchangeSale)
+        public void Add(Sale sale, Exchange exchangeSale)
         {
+            DateTime finalExchangeDate = sale.SaleDate.AddDays(7);
+            if (exchangeSale.ExchangeDate > finalExchangeDate)
+                throw new ClothStoreSalesApiException("Exchanges are allowed only within 7 business days after the sale date.", 500);
+
             _exchange.Add(exchangeSale);
         }
 
