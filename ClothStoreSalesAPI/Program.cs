@@ -11,7 +11,21 @@ builder.Services.AddSingleton<ISaleRepository, SaleRepositoryInMemory>();
 builder.Services.AddSingleton<IReturnRepository, ReturnRepositoryInMemory>();
 builder.Services.AddSingleton<IExchangeRepository, ExchangeRepositoryInMemory>();
 
-builder.Services.AddControllers(options => options.Filters.Add<ExceptionFilter>());
+builder.Services.AddScoped<LogActionFilter>();
+
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<ExceptionFilter>();
+    options.Filters.Add<LogActionFilter>();
+});
+
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("localhost", policyBuilder =>
+    {
+        policyBuilder.WithOrigins("http://localhost:5500");
+    });
+});
 
 // Add services to the container.
 
@@ -27,6 +41,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors("localhost");
 }
 
 app.UseAuthorization();
