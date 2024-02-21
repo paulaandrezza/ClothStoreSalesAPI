@@ -18,6 +18,12 @@ namespace ClothStoreSalesAPI.Controllers
             _exchangeRepository = exchangeRepository;
         }
 
+        /// <summary>
+        /// Registers an item exchange for a specific sale.
+        /// </summary>
+        /// <param name="saleId">The ID of the sale for which the exchange is being registered.</param>
+        /// <param name="exchangeRequest">The details of the exchange to be registered.</param>
+        /// <returns>A response indicating whether the exchange was successfully registered.</returns>
         [HttpPost("{saleId}", Name = "AddExchange")]
         public IActionResult AddExchange([FromRoute] int saleId, [FromBody] CreateReturnAndExchangeRequest exchangeRequest)
         {
@@ -31,6 +37,10 @@ namespace ClothStoreSalesAPI.Controllers
             return Ok(new { Message = "Exchange registered successfully." });
         }
 
+        /// <summary>
+        /// Gets all registered exchanges.
+        /// </summary>
+        /// <returns>A list of all registered exchanges.</returns>
         [HttpGet(Name = "GetAllExchanges")]
         public IActionResult GetAllExchanges()
         {

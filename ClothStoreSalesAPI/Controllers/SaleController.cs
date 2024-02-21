@@ -18,6 +18,11 @@ namespace ClothStoreSalesAPI.Controllers
             _itemRepository = itemRepository;
         }
 
+        /// <summary>
+        /// Registers a new sale.
+        /// </summary>
+        /// <param name="saleRequest">The details of the sale.</param>
+        /// <returns>A response indicating whether the sale was successfully registered.</returns>
         [HttpPost(Name = "AddSale")]
         public IActionResult AddSale([FromBody] CreateSaleRequest saleRequest)
         {
@@ -37,12 +42,21 @@ namespace ClothStoreSalesAPI.Controllers
             return CreatedAtAction("GetSaleById", new { saleId = sale.Id }, new { message = "Resource created successfully.", data = sale });
         }
 
+        /// <summary>
+        /// Retrieves all sales.
+        /// </summary>
+        /// <returns>A list of all sales.</returns>
         [HttpGet(Name = "GetAllSales")]
         public IActionResult GetAllSales()
         {
             return Ok(_saleRepository.GetAll());
         }
 
+        /// <summary>
+        /// Retrieves a specific sale by its ID.
+        /// </summary>
+        /// <param name="saleId">The ID of the sale to retrieve.</param>
+        /// <returns>The sale with the specified ID.</returns>
         [HttpGet("{saleId}", Name = "GetSaleById")]
         public IActionResult GetSaleById([FromRoute] int saleId)
         {
