@@ -21,20 +21,20 @@ namespace ClothStoreSalesAPI.Controllers
         [HttpPost(Name = "AddSale")]
         public IActionResult AddSale([FromBody] CreateSaleRequest saleRequest)
         {
-            foreach (var saleItem in saleRequest.Items)
+            foreach (var saleItem in saleRequest.SaleItems)
             {
                 var item = _itemRepository.GetById(saleItem.ProductId);
 
-                if (!item.Sizes.Contains(saleItem.Size))
+                if (!item.Sizes.Contains(saleItem.Size.ToUpper()))
                 {
                     return BadRequest($"Size {saleItem.Size} is not available for item with ID {saleItem.ProductId}.");
                 }
             }
 
-            Sale sale = new Sale(saleRequest.SaleDate, saleRequest.CustomerName, saleRequest.Items);
+            Sale sale = new Sale(saleRequest.SaleDate, saleRequest.CustomerName, saleRequest.SaleItems);
 
             _saleRepository.Add(sale);
-            return Ok(new { Message = "Created successfully" });
+            return CreatedAtAction("GetSaleById", new { saleId = sale.Id }, new { message = "Resource created successfully.", data = sale });
         }
 
         [HttpGet(Name = "GetAllSales")]
@@ -44,7 +44,7 @@ namespace ClothStoreSalesAPI.Controllers
         }
 
         [HttpGet("{saleId}", Name = "GetSaleById")]
-        public IActionResult GetItemById([FromRoute] int saleId)
+        public IActionResult GetSaleById([FromRoute] int saleId)
         {
             Sale sale = _saleRepository.GetById(saleId);
 

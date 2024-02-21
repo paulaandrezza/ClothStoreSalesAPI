@@ -10,6 +10,6 @@ namespace ClothStoreSalesAPI.RequestsModels
         [Required]
         public string CustomerName { get; set; }
         [Required]
-        public SaleItem[] Items { get; set; }
+        public SaleItem[] SaleItems { get; set; }
     }
 }

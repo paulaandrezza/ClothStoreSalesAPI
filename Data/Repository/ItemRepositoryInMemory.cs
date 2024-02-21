@@ -28,9 +28,21 @@ namespace Data.Repository
             _items.Remove(item);
         }
 
-        public IEnumerable<Item> GetAll()
+        public IEnumerable<Item> GetAll(string? size, ItemType? type)
         {
-            return _items;
+            IEnumerable<Item> items = _items;
+
+            if (!string.IsNullOrEmpty(size))
+            {
+                items = items.Where(i => i.Sizes.Contains(size.ToUpper()));
+            }
+
+            if (type.HasValue)
+            {
+                items = items.Where(i => i.Type == type);
+            }
+
+            return items;
         }
 
         public Item GetById(int id)
@@ -39,16 +51,6 @@ namespace Data.Repository
             if (item == null)
                 throw new ClothStoreSalesApiException($"The item with ID {id} was not found.", 404);
             return item;
-        }
-
-        public IEnumerable<Item> GetBySize(string size)
-        {
-            return _items.Where(i => i.Sizes.Contains(size));
-        }
-
-        public IEnumerable<Item> GetByType(ItemType type)
-        {
-            return _items.Where(i => i.Type == type);
         }
 
         public void Update(Item item)

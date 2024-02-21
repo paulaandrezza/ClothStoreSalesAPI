@@ -11,7 +11,7 @@ namespace Data.Models
             Id = _id++;
             Name = name;
             Type = type;
-            Sizes = sizes;
+            Sizes = sizes.Select(s => s.ToUpper()).ToArray();
             Price = price;
         }
 

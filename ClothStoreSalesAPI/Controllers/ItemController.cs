@@ -22,7 +22,7 @@ namespace ClothStoreSalesAPI.Controllers
         {
             Item item = new Item(itemRequest.Name, itemRequest.Type, itemRequest.Sizes, itemRequest.Price);
             _itemRepository.Add(item);
-            return Ok(new { Message = "Created successfully" });
+            return CreatedAtAction("GetItemById", new { itemId = item.Id }, new { message = "Resource created successfully.", data = item });
         }
 
         [HttpDelete("{itemId}", Name = "DeleteItem")]
@@ -35,11 +35,7 @@ namespace ClothStoreSalesAPI.Controllers
         [HttpGet(Name = "GetAllItems")]
         public IActionResult GetAllItems([FromQuery] string? size = null, ItemType? type = null)
         {
-            if (size != null)
-                return Ok(_itemRepository.GetBySize(size));
-            else if (type != null)
-                return Ok(_itemRepository.GetByType((ItemType)type));
-            return Ok(_itemRepository.GetAll());
+            return Ok(_itemRepository.GetAll(size, type));
         }
 
         [HttpGet("{itemId}", Name = "GetItemById")]

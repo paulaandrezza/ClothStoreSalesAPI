@@ -9,8 +9,6 @@ namespace Data.Repository.Interface
         void Update(Item item);
         void Delete(int id);
         Item GetById(int id);
-        IEnumerable<Item> GetAll();
-        IEnumerable<Item> GetByType(ItemType type);
-        IEnumerable<Item> GetBySize(string size);
+        IEnumerable<Item> GetAll(string? size, ItemType? type);
     }
 }

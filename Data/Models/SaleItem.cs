@@ -2,9 +2,10 @@
 {
     public class SaleItem
     {
-        public SaleItem(int productId, int quantity, decimal unitPrice)
+        public SaleItem(int productId, string size, int quantity, decimal unitPrice)
         {
             ProductId = productId;
+            Size = size.ToUpper();
             Quantity = quantity;
             UnitPrice = unitPrice;
         }
